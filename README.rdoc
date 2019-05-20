@@ -1,3 +1,27 @@
 = StecmsCoupon
 
 This project rocks and uses MIT-LICENSE.
+
+## Installation
+Add this line to your application's Gemfile:
+```ruby
+gem 'stecms_coupon', github: 'LipsiaGROUP/stecms-coupon-plugin'
+```
+
+And then execute:
+
+    $ bundle
+    
+## Usage
+
+Add this line to app/assets/javascripts/backend/backend.js
+
+```javascript
+//= require stecms_coupon
+```
+
+Add this line to config/routes/backend_routes.rb (inside namespace :backend block)
+
+```ruby
+mount StecmsCoupon::Engine, at: "/stecms_coupon", as: 'stecms_coupon'
+```
