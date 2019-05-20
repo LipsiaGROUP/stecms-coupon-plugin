@@ -1,0 +1,13 @@
+// Show Popup
+$questions-mh: 400px;
+
+.stecms-coupon-promo-modal {
+  .questions {
+    max-height: $questions-mh;
+
+    .card-body {
+      height: 100%;
+      overflow: auto;
+    }
+  }
+}

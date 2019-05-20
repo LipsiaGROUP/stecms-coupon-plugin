@@ -1,0 +1,7 @@
+var $html = $("<%= j render 'stecms_coupon/survey_questions/edit', survey_question: @survey_question %>");
+var $container = $("#survey-question-<%= @survey_question.id %> > .dd-item-container");
+
+if ( !$container.children(".edit-component-collapse").length ){
+  $container.append( $html );
+  $html.collapse("show");
+}

@@ -1,0 +1,54 @@
+// destroy any previously created modal (to prevent multiple modals on click spamm)
+(function(){
+  var $modal = $(".stecms-coupon-promo-modal");
+
+  if ( $modal.length ){
+    $modal.each(function(){
+      $(this).remodal().destroy();
+    });
+  }
+})();
+
+
+// opens the edit modal
+// For actions that only show the data, would be better to let the modal close
+// on escape and on click outside
+(function(){
+  var $modal = $("<%=j render partial: 'show' %>");
+  var modal = $modal.remodal({
+    closeOnEscape: true,
+    closeOnOutsideClick: true
+  });
+
+  modal.open();
+
+  $modal.one("closed", function(a, b){
+    modal.destroy();
+  })
+})();
+
+// Resize the promo image, plugin dows not allow to set viewboz manually
+// viewBox to fit container
+(function (){
+  var $modal = $(".stecms-coupon-promo-modal");
+  var $codes = $modal.find('svg');
+
+  if ( $codes.length ) {
+    $codes.each(function() {
+      var $this = $(this);
+
+      var dimensions = [
+        $this.attr('height'),
+        $this.attr('width')
+      ];
+
+      dimensions = $.map(dimensions, function(d) {
+        return ( d === undefined || d === null ) ? 0 : d
+      }).join(" ");
+
+      if ($this.attr('viewBox') === undefined) {
+        $this.attr('viewBox', '0 0 ' + dimensions)
+      }
+    })
+  }
+})();

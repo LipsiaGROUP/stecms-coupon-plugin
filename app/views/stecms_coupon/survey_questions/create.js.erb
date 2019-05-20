@@ -1,0 +1,4 @@
+var $wrapper  = $('#questions');
+var $question = $("<%= j render 'stecms_coupon/survey_questions/survey_question', survey_question: @survey_question %>");
+
+$question.appendTo($wrapper);

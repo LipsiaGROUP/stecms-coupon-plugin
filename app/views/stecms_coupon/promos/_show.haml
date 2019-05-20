@@ -1,0 +1,130 @@
+.stecms-coupon-promo-modal.text-left
+  %button.remodal-close{data:{remodal_action: "close"}}
+
+  .row.m-0.mt-3
+    .col-12.p-0
+      -# Divide information categories
+      %ul.nav.nav-tabs
+        %li.nav-item=link_to t("admin.promo.show.tabs.general"), "#promo-general", data: { toggle: "tab" }, class: "nav-link active"
+        %li.nav-item=link_to t("admin.promo.show.tabs.survey"),  "#promo-survey", data: { toggle: "tab" }, class: "nav-link"
+
+      .tab-content.mt-4
+        .tab-pane.active#promo-general
+          .row
+            .col-12.col-sm-5.text-center
+              .card.mb-4
+                .card-body.svg-responsive<>
+                  =RQRCode::QRCode.new(@promo.identifier).as_svg.html_safe
+
+                .card-footer.bg-transparent
+                  %h5.card-title.text-primary
+                    .mb-2=t("admin.promo.show.identifier")
+                    - if @promo.identifier.present?
+                      %div=@promo.identifier
+                    - else
+                      .text-danter=t("admin.promo.show.alerts.identifier")
+
+            .col-12.col-sm-7
+              .card.mb-4
+                .card-body
+                  %h5.card-title.text-primary
+                    =t("admin.promo.show.sections.general")
+
+                  %dl.mb-0
+                    %dt=t("admin.promo.show.name")
+                    %dd=@promo.name
+
+                    %dt=t("admin.promo.show.active")
+                    %dd=t("#{@promo.active}")
+
+                    %dt
+                      =t("admin.promo.show.usage_time_per_device")
+                      %span.badge.badge-pill.badge-info.align-middle{:"data-toggle" => "tooltip", :"data-html" => "false", :"data-title" => t("admin.promo.show.help.usage_time_per_device")}
+                        %i.fa.fa-info
+                    %dd=@promo.usage_time_per_device
+
+                    %dt=t("admin.promo.show.usage_coupon_times")
+                    %dd=@promo.usage_coupon_times
+
+                    %dt=t("admin.promo.show.answer")
+                    %dd=t("#{@promo.answer}")
+
+                    %dt=t("admin.promo.show.valid_from")
+                    %dd=l(@promo.valid_from, format: :long)
+
+                    %dt=t("admin.promo.show.valid_until")
+                    %dd=l(@promo.valid_from, format: :long)
+
+                    %dt=t("admin.promo.show.created_at")
+                    %dd=l(@promo.created_at, format: :long)
+
+                    %dt=t("admin.promo.show.updated_at")
+                    %dd.mb-0=l(@promo.updated_at, format: :long)
+
+        .tab-pane#promo-survey
+          -if ( survey = @promo.survey ).present?
+            - unless @promo.answer?
+              .row
+                .col-12
+                  .alert.alert-warning
+                    =raw(t("admin.promo.show.alerts.survey"))
+
+            .row
+              .col-12.col-sm-5
+                .card.mb-4
+                  .card-body
+                    %h5.text-primary.card-title
+                      =t("admin.promo.show.sections.survey.general")
+
+                    %dl.mb-0
+                      %dt=t("admin.promo.show.survey.name")
+                      %dd=survey.name
+
+                      %dt=t("admin.promo.show.survey.description")
+                      %dd=survey.description.blank? ? " - " : survey.description
+
+                      %dt=t("admin.promo.show.survey.created_at")
+                      %dd=l(survey.created_at, format: :long)
+
+                      %dt=t("admin.promo.show.survey.updated_at")
+                      %dd.mb-0=l(survey.updated_at, format: :long)
+
+              - questions = survey.questions
+              .col-12.col-sm-7
+                .card.mb-4.questions
+                  .card-body
+                    %h5.text-primary.card-title
+                      =t("admin.promo.show.sections.survey.questions", size: questions.size)
+
+                    - if questions.present?
+                      - questions.each_with_index do |question, i|
+                        %hr
+                        %h5.mt-2.text-primary=i+1
+
+                        %dl.mb-0
+                          - [:question, :input_options, :input_placeholder, :input_label].each do |attr|
+                            %dt=t("admin.promo.show.questions.#{attr}")
+                            %dd=question.send(attr).present? ? question.send(attr) : "-"
+
+                          %dt=t("admin.promo.show.questions.input_type")
+                          %dd=t("admin.survey_form.field_types.#{question.input_type}")
+
+                          %dt=t("admin.promo.show.questions.input_required")
+                          %dd.mb-0=t("#{question.input_required}")
+
+                    - else
+                      .text-danger
+                        =t("admin.promo.show.no_questions")
+
+            .mb-3
+              =link_to t("admin.promo.show.edit_survey"), edit_promo_survey_form_path(@promo, survey), class: 'btn btn-block btn-outline-danger'
+
+          - else
+            .text-danger.mb-3
+              =t("admin.promo.show.no_survey")
+
+            .mb-3
+              =link_to t("admin.promo.show.add_survey"), new_promo_survey_form_path(@promo), class: 'btn btn-block btn-outline-danger'
+
+        %div
+          =link_to t("admin.words.edit"), edit_promo_path(@promo), class: 'btn btn-outline-primary btn-block'

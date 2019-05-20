@@ -1,0 +1,6 @@
+.dd.component-dragel
+  %ol#questions.dd-list
+    =render @survey_form.questions
+
+  .links
+    =link_to t("admin.survey_form.form.add_question"), survey_form_survey_questions_path(@survey_form), remote: true, class: 'add-component-btn mb-3', method: :post

@@ -1,0 +1,17 @@
+= f.hidden_field :stecms_coupon_promo_id
+.form-group
+  =f.label :name
+  =f.text_field :name, class: "form-control"
+.form-group
+  =f.label :description
+  =f.text_area :description, class: "form-control"
+
+-# #questions
+-#   = f.fields_for :questions do |question|
+-#     = render 'question_fields', f: question
+-#   .links
+-#     = link_to_add_association 'add question', f, :questions, class: 'add-component-btn'
+
+.fixed-buttons
+  = f.submit class: 'btn btn-primary'
+  = link_to t("admin.survey_form.form.edit_promo"), edit_promo_path(@promo), class: 'btn btn-danger'

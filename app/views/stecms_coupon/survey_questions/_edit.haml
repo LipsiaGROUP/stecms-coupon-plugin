@@ -1,0 +1,35 @@
+.collapse.edit-component-collapse{id: "question-collapse-#{@survey_question.id}"}
+  .edit-component-container
+    =link_to "#question-collapse-#{survey_question.id}", data: { toggle: "collapse" }, class: "close-component", role: "button", aria: { expanded: false } do
+      %i.fa.fa-caret-up.mr-1
+      =t("admin.words.close")
+
+    =fields_for "survey_form[questions_attributes][]", @survey_question do |f|
+      =f.hidden_field :id
+
+      .form-row.form-group
+        .col-12
+          =f.label :question
+          =f.text_field :question, class: 'form-control'
+
+      .form-row.form-group
+        .col-12.col-sm-6
+          =f.label :input_type
+          =f.select :input_type, ::StecmsCoupon::SurveyQuestion::INPUT_TYPES.map{|i| [t("admin.survey_form.field_types.#{i}"), i] }, {}, class: "form-control"
+        .col-12.col-sm-6
+          =f.label :input_options
+          =f.text_field :input_options, class: "form-control"
+
+      .form-row.form-group
+        .col-12.col-sm-6
+          =f.label :input_label
+          =f.text_field :input_label, class: 'form-control'
+        .col-12.col-sm-6
+          =f.label :input_placeholder
+          =f.text_field :input_placeholder, class: 'form-control'
+
+      .form-row.form-group
+        .col-12
+          .form-check.backend-checkbox.check-left.inline-check
+            =f.check_box :input_required, class: 'form-check-input'
+            =f.label :input_required, class: 'form-check-label'

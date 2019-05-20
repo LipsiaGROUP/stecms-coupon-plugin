@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  column_type: MyString
+  column_input_type: MyString
+  input_type_options: MyString
+  input_type_placeholder: MyString
+
+two:
+  title: MyString
+  column_type: MyString
+  column_input_type: MyString
+  input_type_options: MyString
+  input_type_placeholder: MyString

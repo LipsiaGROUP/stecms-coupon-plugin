@@ -1,0 +1,52 @@
+=form_for @coupon do |f|
+  - if @coupon.errors.any?
+    .alert.alert-danger{role: "alert"}
+      %h4.alert-heading
+        =t("errors.template.header", model: f.object.model_name.human, count: @coupon.errors.count)
+      %hr
+      -@coupon.errors.full_messages.each do |message|
+        %div=message
+
+  .form-row
+    .form-group.col-12
+      =f.label :identifier
+      =f.text_field :identifier, class: 'form-control', readonly: f.object.persisted?
+
+  .form-row
+    .form-group.col-12
+      =f.label :stecms_coupon_promo_id
+      =f.collection_select :stecms_coupon_promo_id, ::StecmsCoupon::Promo.all, :id, :name, { include_blank: true }, class: 'form-control'
+
+  .form-row
+    .form-group.col-12.col-sm-4
+      =f.label :valid_from
+      =f.text_field :valid_from, class: 'form-control flatpicker'
+    .form-group.col-12.col-sm-4
+      =f.label :valid_until
+      =f.text_field :valid_until, class: 'form-control flatpicker'
+
+    .form-group.col-12.col-sm-4
+      =f.label :generated_at
+      =f.text_field :generated_at, class: 'form-control flatpicker'
+  
+  .form-row.mb-2
+    .form-group.col-sm-6
+      =f.label :max_usage_times
+      =f.text_field :max_usage_times, class: 'form-control'
+
+    .form-group.col-sm-6
+      =f.label :usage_times
+      =f.text_field :usage_times, class: 'form-control'
+
+    .form-group.col-12
+      =f.label :device
+      =f.text_area :device, class: 'form-control', readonly: true
+
+  .form-row
+    .form-group.col-sm-6
+      .form-check.backend-checkbox.check-left.inline-check
+        =f.check_box :active, class: 'form-check-input'
+        =f.label :active, class: 'form-check-label'
+
+  .fixed-buttons
+    =f.submit class: 'btn btn-primary'

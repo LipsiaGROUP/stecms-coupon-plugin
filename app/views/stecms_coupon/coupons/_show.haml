@@ -1,0 +1,85 @@
+- promo = @coupon.promo
+.stecms-coupon-coupon-modal.text-left
+  %button.remodal-close{data:{remodal_action: "close"}}
+
+  .row.m-0.mt-3
+    .col-12.p-0
+      %ul.nav.nav-tabs
+        %li.nav-item=link_to t("admin.coupon.show.tabs.general"), "#coupon-general", data: { toggle: "tab" }, class: "nav-link active"
+        %li.nav-item=link_to t("admin.coupon.show.tabs.data"),  "#coupon-data", data: { toggle: "tab" }, class: "nav-link"
+
+      .tab-content.mt-4
+        .tab-pane.active#coupon-general
+          .row
+            .col-12.col-sm-6
+              .card
+                .card-body
+                  %h5.card-title.text-primary
+                    =t("admin.coupon.show.sections.general")
+
+                  %dl.mb-0
+                    %dt=t("admin.coupon.show.identifier")
+                    %dd=formatted_coupon_identifier(@coupon.identifier)
+
+                    %dt=t("admin.coupon.show.active")
+                    %dd=t("#{@coupon.active}")
+
+                    %dt=t("admin.coupon.show.created_at")
+                    %dd=l(@coupon.created_at, format: :long)
+
+                    %dt=t("admin.coupon.show.updated_at")
+                    %dd.mb-0=l(@coupon.updated_at, format: :long)
+
+            .col-12.col-sm-6
+              .card
+                .card-body
+                  %h5.card-title.text-primary
+                    =t("admin.coupon.show.sections.usage")
+
+                  %dl.mb-0
+                    %dt=t("admin.coupon.show.promo")
+                    %dd
+                      - if promo.present?
+                        =link_to promo.name, edit_promo_path(promo)
+                      - else
+                        .text-danger
+                          =t("admin.coupon.show.alerts.promo")
+
+                    %dt=t("admin.coupon.show.generated_at")
+                    %dd=l(@coupon.generated_at, format: :long) if @coupon.generated_at.present?
+
+                    %dt=t("admin.coupon.show.max_usage_times")
+                    %dd=@coupon.max_usage_times
+
+                    %dt=t("admin.coupon.show.usage_times")
+                    %dd.mb-0=@coupon.usage_times
+
+          .row.mt-4.mb-4
+            .col-12
+              .card
+                .card-body
+                  %dl.mb-0
+                    %dt=t("admin.coupon.show.device")
+                    %dd.mb-0=@coupon.device.present? ? @coupon.device : content_tag(:div, class: 'text-danger') { t("admin.coupon.show.alerts.device") }
+
+        .tab-pane#coupon-data
+          .row
+            - if promo.present? && promo.survey.present? && promo.survey.questions.present? && promo.answer?
+              - survey_questions = promo.survey.questions
+              .col-12.col-sm-12
+                .card.mb-3
+                  .card-body
+                    %h5.card-title.text-primary
+                      =promo.name
+                    %dl.mb-0
+                      - survey_questions.each do |question|
+                        %dt=question.input_label
+                        %dd=question.answer_by_coupon(@coupon)
+            - else
+              .col-12
+                .text-danger.mb-3
+                  =t("admin.coupon.show.alerts.data")
+
+        .row
+          .col-12
+            =link_to t("admin.words.edit"), edit_coupon_path(@coupon), class: 'btn btn-outline-primary btn-block'

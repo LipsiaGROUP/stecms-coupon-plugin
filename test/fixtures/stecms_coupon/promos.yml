@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  identifier: MyString
+  answer: false
+  usage_time_per_device: 1
+  valid_from: 2019-03-21 17:35:47
+  valid_until: 2019-03-21 17:35:47
+  active: false
+
+two:
+  name: MyString
+  identifier: MyString
+  answer: false
+  usage_time_per_device: 1
+  valid_from: 2019-03-21 17:35:47
+  valid_until: 2019-03-21 17:35:47
+  active: false

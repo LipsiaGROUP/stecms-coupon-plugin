@@ -1,0 +1,69 @@
+=form_for @promo do |f|
+  - if @promo.errors.any?
+    .alert.alert-danger{role: "alert"}
+      %h4.alert-heading
+        =t("errors.template.header", model: f.object.model_name.human, count: @promo.errors.count)
+      %hr
+      -@promo.errors.full_messages.each do |message|
+        %div=message
+
+
+  .form-row.align-items-center
+    .form-group.col-sm-6
+      =f.label :name
+      =f.text_field :name, class: 'form-control'
+
+    .form-group.col-sm-6
+      =f.label :valid_from
+      =f.text_field :valid_from, class: 'flatpicker form-control'
+
+  .form-row
+    .form-group.col-12
+      =f.label :cover
+      =f.file_field :cover, class: 'form-control'
+
+  -# - if f.object.cover.present?
+  -#   =image_tag f.object.cover.thumb("300x300").url
+  =#render partial: 'backend/images/uploader', locals: { parent: f.object }
+
+  .form-row.align-items-center
+    .form-group.col-sm-6
+      =f.label :identifier
+      =f.text_field :identifier, class: 'form-control', readonly: f.object.persisted?
+
+    .form-group.col-sm-6
+      =f.label :valid_until
+      =f.text_field :valid_until, class: 'flatpicker form-control'
+
+  .form-row.align-items-end
+    .form-group.col-12.col-sm-6
+      =f.label :usage_time_per_device
+      =f.text_field :usage_time_per_device, class: 'form-control'
+
+    .form-group.col-12.col-sm-6
+      =f.label :usage_coupon_times
+      =f.text_field :usage_coupon_times, class: 'form-control'
+
+  .form-row.mb-2
+    .form-group.col-12
+      =f.label :description
+      =f.text_area :description, class: 'form-control'
+
+  .form-row
+    .form-group.col-12
+      .form-check.backend-checkbox.check-left.inline-check
+        =f.check_box :active, class: 'form-check-input'
+        =f.label :active, class: 'form-check-label'
+
+      .form-check.backend-checkbox.check-left.inline-check
+        = f.check_box :answer, class: 'form-check-input'
+        = f.label :answer, class: 'form-check-label'
+
+  .fixed-buttons
+    =f.submit class: 'btn btn-primary'
+
+    - if f.object.survey.present?
+      =link_to t("admin.promo.form.edit_survey"), edit_promo_survey_form_path(f.object, f.object.survey), class: 'btn btn-danger'
+    - else
+      - if f.object.persisted?
+        =link_to t("admin.promo.form.add_survey"), new_promo_survey_form_path(f.object), class: 'btn btn-danger'

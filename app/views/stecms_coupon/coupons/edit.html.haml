@@ -1,0 +1,3 @@
+=render layout: "stecms_coupon/shared/coupon_panel" do
+  =render_card_box title: t("admin.coupon.edit.title", identifier: formatted_coupon_identifier(@coupon.identifier)), collapse: false do
+    =render 'form'

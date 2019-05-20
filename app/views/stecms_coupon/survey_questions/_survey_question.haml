@@ -1,0 +1,20 @@
+%li.dd-item.nested-fields{id: "survey-question-#{survey_question.id}"}
+  .dd-item-container
+    %span.dd-content
+      - if survey_question.question.present?
+        =survey_question.question
+      - else
+        %span.text-danger
+          =t("admin.survey_form.form.no_question_title")
+
+      %a.dd-toggle-menu{href: "#", role: "button", data: { toggle: "dropdown" }}
+
+      .inline-menu-wrapper
+        .inline-menu
+          =link_to survey_form_survey_question_path(survey_question.survey_form, survey_question), remote: true, data: { confirm: t("admin.survey_form.survey_questions.delete") }, method: :delete, class: 'inline-menu-link ml-0' do
+            %i.fa.fa-trash.fa-fw
+            .icon-name=t("admin.words.delete")
+
+          =link_to  edit_survey_form_survey_question_path(survey_question.survey_form, survey_question), class: 'edit-question inline-menu-link', data: { toggle: "collapse" } do
+            %i.fa.fa-pencil.fa-fw
+            .icon-name=t("admin.words.edit")

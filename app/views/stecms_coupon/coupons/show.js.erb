@@ -1,0 +1,28 @@
+// destroy any previously created modal (to prevent multiple modals on click spamm)
+(function(){
+  var $modal = $(".stecms-coupon-coupon-modal");
+
+  if ( $modal.length ){
+    $modal.each(function(){
+      $(this).remodal().destroy();
+    });
+  }
+})();
+
+
+// opens the edit modal
+// For actions that only show the data, would be better to let the modal close
+// on escape and on click outside
+(function(){
+  var $modal = $("<%=j render partial: 'show' %>");
+  var modal = $modal.remodal({
+    closeOnEscape: true,
+    closeOnOutsideClick: true
+  });
+
+  modal.open();
+
+  $modal.one("closed", function(a, b){
+    modal.destroy();
+  })
+})();

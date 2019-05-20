@@ -1,0 +1,11 @@
+=render layout: "stecms_coupon/shared/coupon_panel" do
+  =render layout: 'form' do |f|
+    =render_card_box title: t("admin.survey_form.new.title", promo: @promo.name), collapse: false do
+      =render 'stecms_coupon/survey_forms/errors', f: f
+      =render 'stecms_coupon/survey_forms/parts/general', f: f
+
+    .alert.alert-info{role: "alert"}
+      %h4.alert-heading
+        =t("admin.survey_form.save_before_insert_questions_header")
+      %hr
+      =t("admin.survey_form.save_before_insert_questions")

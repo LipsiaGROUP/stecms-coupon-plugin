@@ -1,0 +1,10 @@
+%ul.nav.flex-column.notifications-nav
+  - if policy(StecmsCoupon::Promo).index?
+    %li.nav-item
+      %a.nav-link{class: ("active" if @side_menu == "stecms_promo"), href: promos_path}
+        =t("admin.promo.side_menu.promos")
+        
+  - if policy(StecmsCoupon::Coupon).index?
+    %li.nav-item
+      %a.nav-link{class: ("active" if @side_menu == "stecms_coupon"), href: coupons_path}
+        =t("admin.promo.side_menu.coupons")

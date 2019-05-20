@@ -1,0 +1,36 @@
+=render layout: "stecms_coupon/shared/coupon_panel" do
+
+  =render_card_box title: t("admin.promo.index.title"), collapse: false do
+    - if @user.can(:create_promos)
+      =link_to new_promo_path, class: 'btn btn-primary btn-sm' do
+        %i.fa.fa-plus
+        =t("admin.promo.index.new")
+
+    .table-responsive
+      %table.table.table-condensed.mt-3
+        %thead
+          %tr
+            %th=t("admin.promo.table.identifier")
+            %th=t("admin.promo.table.name")
+            -#%th=t("admin.promo.table.answer")
+            -#%th=t("admin.promo.table.usage_time_per_device")
+            %th=t("admin.promo.table.active")
+            %th=t("admin.promo.table.valid_from")
+            %th=t("admin.promo.table.valid_until")
+            %th
+
+        %tbody
+          - if @collection.present?
+            - @collection.each do |item|
+              %tr{id: "promo-#{item.id}"}
+                %td=item.identifier
+                %td=item.name
+                %td=t("#{item.active}")
+                %td=l(item.valid_from, format: :long) if item.valid_from.present?
+                %td=l(item.valid_until, format: :long) if item.valid_from.present?
+                %td
+                  =link_to t("admin.words.edit"), edit_promo_path(item), class: 'mr-2'
+                  =link_to t("admin.words.show"), promo_path(item), class: 'text-info mr-2', remote: true
+                  -# TODO: override the confirm logic to open a prettier popup
+                  -# refer to https://teamtreehouse.com/community/sweetalert-with-rails for inspiration
+                  =link_to t("admin.words.delete"), promo_path(item), method: :delete, class: 'text-danger', remote: true, data: { confirm: t("admin.promo.index.delete", name: item.name) }
