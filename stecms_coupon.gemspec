@@ -5,7 +5,7 @@ require "stecms_coupon/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "stecms-coupon-plugin"
+  s.name        = "stecms_coupon"
   s.version     = StecmsCoupon::VERSION
   s.authors     = ["Mada Aryakusumah"]
   s.email       = ["lokermada@gmail.com"]
