@@ -1,0 +1,210 @@
+en:
+  # Model Translations
+  activerecord:
+    models:
+      stecms_coupon/promo:
+        one: Promo
+        others: Promos
+      stecms_coupon/coupon:
+        one: Discount Code
+        others: Discount Codes
+
+      stecms_coupon/survey_form:
+        one: Survey
+        others: Surveys
+
+    attributes:
+      stecms_coupon/promo:
+        name: Name
+        description: Description
+        active: Active
+        identifier: Promo Code
+        answer: Ask Survey
+        usage_time_per_device: Scan. Per Device
+        valid_from: Valid from
+        valid_until: Valid until
+        cover_image: Image
+        usage_coupon_times: Max Usage Times for Coupons
+
+
+      stecms_coupon/coupon:
+        identifier: Code
+        device: Device
+        max_usage_times: Usable Times
+        usage_times: Times Used
+        active: Active
+        valid_from: Valid from
+        valid_until: Valid until
+        generated_at: Generatad at
+        stecms_coupon_promo_id: Promo
+
+      stecms_coupon/survey_form:
+        name: Name
+        description: Description
+
+      stecms_coupon/survey_question:
+        question: Question Text
+        input_type: Input Type
+        input_required: Mandatory
+        input_placeholder: Placeholder
+        input_label: Input Label
+        input_options: Selectable Values
+
+
+
+  # Views Translations
+  admin:
+    promo:
+      # General aside menu for stecms coupons section
+      side_menu:
+        promos: "Promos"
+        coupons: "Discount Codes"
+
+      index:
+        title: "Promos List"
+        new: "Create a Promo"
+        delete: "Delete Promo \"%{name}\"?"
+
+      new:
+        title: Create Promo
+
+      edit:
+        title: Edit Promo "%{name}"
+
+      form:
+        add_survey: Add Survey
+        edit_survey: Edit Survey
+
+      show:
+        title: "Information about Promo \"%{name}\""
+        identifier: Promo Code
+        name: Promo Name
+        created_at: Created at
+        updated_at: Updated_at
+        active: Active
+        valid_from: Valid from
+        valid_until: Valid until
+        usage_time_per_device: "Scans. per Device"
+        answer: Ask Survey
+
+        usage_coupon_times: Max Usage Times for Coupons
+
+        no_questions: No Questions have been set
+        no_survey: No Survey has been set
+        edit_survey: Edit Survey
+        add_survey: Add Survey
+
+        questions:
+          question: Question Text
+          input_type: Tipo Input
+          input_options: Selectable Values
+          input_label: Field Label
+          input_placeholder: Placeholder
+          input_required: Mandatory
+
+        alerts:
+          survey: "<b>WARNING!</b> For this promotion a Survey has been set but field \"Ask Survey\" is not checked. Please check the \"Ask Survey\" box to let users to fill it."
+          identifier: No Promo Code.
+
+        survey:
+          name: Survey Name
+          description: "Description"
+          created_at: Created at
+          updated_at: Updated at
+
+        help:
+          usage_time_per_device: Maximum amount of allowed scans per device to get a Discount Code
+
+        tabs:
+          general: Promo
+          survey: Survey
+
+        sections:
+          various: Various
+          general: General
+          survey:
+            general: General
+            questions: Questions (%{size})
+
+      table:
+        identifier: Promo Code
+        name: Name
+        valid_from: Valid from
+        valid_until: Valid until
+        active: Active
+        answer: Asks Survey
+        usage_time_per_device: Scans. per Device
+
+    # Coupons section
+    coupon:
+      index:
+        title: "Discount Codes List"
+        new: Create a Coupon
+        delete: "Delete Coupon \"%{name}\"?"
+
+      new:
+        title: Create new Coupon
+
+      edit:
+        title: "Edit Coupon \"%{identifier}\""
+
+      show:
+        identifier: Discount Code
+        created_at: Creato il
+        updated_at: Updated at
+        generated_at: Generated at
+        max_usage_times: Times Usable
+        usage_times: Times Used
+        active: Active
+        device: Device ID
+        promo: Promo
+
+        tabs:
+          general: General
+          data: Collected Data
+
+        alerts:
+          device: No Related Device
+          promo: No Related Promo
+          data: No Collected Data
+
+        sections:
+          general: General
+          usage: Usage
+          device: Device
+
+
+      table:
+        identifier: Code
+        device: Device
+        max_usage_times: Times Usable
+        usage_times: Times Used
+        active: Active
+        valid_from: Valid from
+        valid_until: Valid until
+        generated_at: Generated at
+
+    # Survey forms
+    survey_form:
+      new:
+        title: "Create Survey from Promo \"%{promo}\""
+      edit:
+        title: "Edit Survey form Promo \"%{promo}\""
+
+      field_types:
+        text: Text
+        checkbox: Checkbox
+        selectbox: Dropdown
+        number: Number
+        date: Date
+
+      survey_questions:
+        delete: "Delete Question?"
+
+      save_before_insert_questions_header: Save to add Questions
+      save_before_insert_questions: Questions can be related on to persisted Surveys
+
+      form:
+        edit_promo: View Promo
+        add_question: Add New Question
+        no_question_title: No Question Text

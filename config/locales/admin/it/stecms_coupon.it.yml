@@ -1,0 +1,211 @@
+it:
+  # Model Translations
+  activerecord:
+    models:
+      stecms_coupon/promo:
+        one: Promozione
+        others: Promozioni
+      stecms_coupon/coupon:
+        one: Codice Sconto
+        others: Codici Sconto
+
+      stecms_coupon/survey_form:
+        one: Sondaggio
+        others: Sondaggi
+
+    attributes:
+      stecms_coupon/promo:
+        name: Nome
+        description: Descrizione
+        active: Attivo
+        identifier: Codice Promozione
+        answer: Richiede Sondaggio
+        usage_time_per_device: Scans. Per Dispositivo
+        valid_from: Valida dal
+        valid_until: Valida al
+        cover_image: Immagine
+        usage_coupon_times: Utilizzo Massimo dei Coupon
+
+
+      stecms_coupon/coupon:
+        identifier: Codice
+        device: Dispositivo
+        max_usage_times: Volte Utilizzabile
+        usage_times: Volte Utilizzato
+        active: Attivo
+        valid_from: Valido dal
+        valid_until: Valido al
+        generated_at: Generato il
+        stecms_coupon_promo_id: Promozione
+
+      stecms_coupon/survey_form:
+        name: Nome
+        description: Descrizione
+
+      stecms_coupon/survey_question:
+        question: Testo Domanda
+        input_type: Tipo Input
+        input_required: Obbligatorio
+        input_placeholder: Suggerimento
+        input_label: Etichetta Campo
+        input_options: Valori Selezionabili
+
+
+
+  # Views Translations
+  admin:
+    promo:
+      # General aside menu for stecms coupons section
+      side_menu:
+        promos: "Promozioni"
+        coupons: "Codici Sconto"
+
+      index:
+        title: "Elenco Promozioni"
+        new: "Crea una Promozione"
+        delete: "Eliminare Promozione \"%{name}\"?"
+
+      new:
+        title: Crea Promozione
+
+      edit:
+        title: Modifica Promozione "%{name}"
+
+      form:
+        add_survey: Aggiungi Sondaggio
+        edit_survey: Modifica Sondaggio
+
+      show:
+        title: "Informazioni Promozione \"%{name}\""
+        identifier: Codice Promozione
+        name: Nome Promozione
+        created_at: Creata il
+        updated_at: Aggiornata il
+        active: Attiva
+        valid_from: Valida dal
+        valid_until: Valida al
+        usage_time_per_device: "Scans. per Dispositivo"
+        answer: Richiede Sondaggio
+
+        no_questions: Nessun Quesito è stato configurato
+        no_survey: Nessun Sondaggio è stato configurato
+        edit_survey: Modifica Sondaggio
+        add_survey: Aggiungi Sondaggio
+
+        usage_coupon_times: Massimo Utilizzo dei Coupon
+
+        questions:
+          question: Testo Quesito
+          input_type: Tipo Input
+          input_options: Valori Selezionabili
+          input_label: Etichetta Campo
+          input_placeholder: Suggerimento
+          input_required: Obbligatorio
+
+        alerts:
+          survey: "<b>ATTENZIONE!</b> Per questa promozione hai configurato un sondaggio ma non hai spuntato la casella \"Richiede Sondaggio\". Spunta la casella per fare in modo che gli utenti lo compilino."
+          identifier: Nessun Codice Promozione.
+
+        survey:
+          name: Nome Sondaggio
+          description: "Descrizione"
+          created_at: Creato il
+          updated_at: Aggiornato il
+
+        help:
+          usage_time_per_device: Numero massimo di volte che un dispostivo può scansionare il codice promozione per ottenere un buono sconto.
+
+        tabs:
+          general: Promozione
+          survey: Sondaggio
+          cover: Immagine Promozione
+
+        sections:
+          various: Varie
+          general: Generale
+          survey:
+            general: Generale
+            questions: Quesiti (%{size})
+
+      table:
+        identifier: Codice Promozione
+        name: Nome
+        valid_from: Valida dal
+        valid_until: Valida al
+        active: Attiva
+        answer: Chiede Questionario
+        usage_time_per_device: Scansioni Massime per Dispositivo
+
+    # Coupons section
+    coupon:
+      index:
+        title: "Elenco Codici Sconto"
+        new: Crea un Buono Sconto
+        delete: "Eliminare Buono Sconto \"%{name}\"?"
+
+      new:
+        title: Crea un Buono Sconto
+
+      edit:
+        title: "Modifica Buono Sconto \"%{identifier}\""
+
+      show:
+        identifier: Codice Sconto
+        created_at: Creato il
+        updated_at: Aggiornato il
+        generated_at: Generato il
+        max_usage_times: Volte utilizzabile
+        usage_times: Volte utilizzato
+        active: Attivo
+        device: ID Dispositivo
+        promo: Promozione
+
+        tabs:
+          general: Generale
+          data: Dati Raccolti
+
+        alerts:
+          device: Nessun Dispositivo Associato
+          promo: Nessuna Promozione Associata
+          data: Nessun Dato Raccolto
+
+        sections:
+          general: Generale
+          usage: Utilizzo
+          device: Dispositivo
+
+
+      table:
+        identifier: Codice
+        device: Dispositivo
+        max_usage_times: Volte Utilizzabile
+        usage_times: Volte Utilizzato
+        active: Attivo
+        valid_from: Valido dal
+        valid_until: Valido al
+        generated_at: Generato il
+
+    # Survey forms
+    survey_form:
+      new:
+        title: "Crea Sondaggio per la Promozione \"%{promo}\""
+      edit:
+        title: "Modifica Sondaggio per la Promozione \"%{promo}\""
+
+      field_types:
+        text: Testo
+        checkbox: Casella di Spunta
+        selectbox: Menu Tendina
+        number: Numerico
+        date: Data
+
+      survey_questions:
+        delete: "Eliminare Quesito?"
+
+      save_before_insert_questions_header: Salva per Aggiungere Quesiti
+      save_before_insert_questions: I Quesiti possono essere associati solo ai Sondaggi Memorizzati
+
+      form:
+        edit_promo: Visualizza Promozione
+        add_question: Aggiungi Nuovo Quesito
+        no_question_title: Nessun Testo per Il Quesito

@@ -4,7 +4,7 @@
 //= require stecms_coupon/survey_question
 
 $(document).ready(function(){
-	flatpickr('.flatpicker', {
-		enableTime: true
-	})
+  flatpickr('.flatpicker', {
+    enableTime: true,		
+  })
 });
