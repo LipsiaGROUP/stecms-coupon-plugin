@@ -77,6 +77,9 @@ en:
       form:
         add_survey: Add Survey
         edit_survey: Edit Survey
+        general: General
+        validity: Validity
+        coupon_usage: Coupon Usage Settings
 
       show:
         title: "Information about Promo \"%{name}\""
@@ -91,6 +94,9 @@ en:
         answer: Ask Survey
 
         usage_coupon_times: Max Usage Times for Coupons
+        visible: Visible Online
+        coupon_usable_from: Coupons Usable from
+        coupon_usable_until: Coupons Usable until
 
         no_questions: No Questions have been set
         no_survey: No Survey has been set
