@@ -10,4 +10,11 @@ $questions-mh: 400px;
       overflow: auto;
     }
   }
+
+  .svg-responsive {
+    svg {
+      max-width: 100%;
+    }
+  }
+  
 }

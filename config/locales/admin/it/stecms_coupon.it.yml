@@ -25,6 +25,9 @@ it:
         valid_until: Valida al
         cover_image: Immagine
         usage_coupon_times: Utilizzo Massimo dei Coupon
+        visible: Visibile Online
+        coupon_usable_from: Cupon Utilizzabili dal
+        coupon_usable_until: Cupon Utilizzabili fino al
 
 
       stecms_coupon/coupon:
@@ -74,6 +77,9 @@ it:
       form:
         add_survey: Aggiungi Sondaggio
         edit_survey: Modifica Sondaggio
+        general: Generale
+        validity: Validità
+        coupon_usage: Utilizzo dei Coupon
 
       show:
         title: "Informazioni Promozione \"%{name}\""
@@ -86,6 +92,9 @@ it:
         valid_until: Valida al
         usage_time_per_device: "Scans. per Dispositivo"
         answer: Richiede Sondaggio
+        coupon_usable_from: Coupon Usabili dal
+        coupon_usable_until: Coupon Usabili fino al
+        visible: Visibile Online
 
         no_questions: Nessun Quesito è stato configurato
         no_survey: Nessun Sondaggio è stato configurato
@@ -122,6 +131,7 @@ it:
 
         sections:
           various: Varie
+          validity: Validità
           general: Generale
           survey:
             general: Generale

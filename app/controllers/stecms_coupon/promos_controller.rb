@@ -71,7 +71,21 @@ module StecmsCoupon
 
       # Only allow a trusted parameter "white list" through.
       def promo_params
-        params.require(:promo).permit(:usage_coupon_times, :name, :identifier, :answer, :usage_time_per_device, :valid_from, :valid_until, :active, :cover, :description)
+        params.require(:promo).permit(
+          :usage_coupon_times,
+          :name,
+          :identifier,
+          :answer,
+          :usage_time_per_device,
+          :valid_from,
+          :valid_until,
+          :active,
+          :cover,
+          :description,
+          :visible,
+          :coupon_usable_from,
+          :coupon_usable_until
+        )
       end
 
       def set_active_page

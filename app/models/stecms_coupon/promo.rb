@@ -2,14 +2,16 @@ class StecmsCoupon::Promo < ActiveRecord::Base
   mount_uploader :cover, FileUploader
 
   validates :name, presence: true
+
   validates :valid_from, 	 presence: true, if: Proc.new { |a| a.valid_until.blank? }
+
   validates :valid_until , presence: true, if: Proc.new { |a| a.valid_from.blank? }
   validates :valid_until, date: { after: :valid_from }
 
   validates :identifier,   presence: true, uniqueness: { case_sensitive: false }
 
   validates :usage_time_per_device, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
-  validates :usage_coupon_times, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
+  validates :usage_coupon_times,    numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 
   has_one :survey, :dependent => :destroy, class_name: 'StecmsCoupon::SurveyForm', foreign_key: :stecms_coupon_promo_id, inverse_of: :promo
   has_many :coupons, :dependent => :destroy, class_name: 'StecmsCoupon::Coupon', foreign_key: :stecms_coupon_promo_id, inverse_of: :promo

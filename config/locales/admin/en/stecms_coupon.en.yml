@@ -25,6 +25,9 @@ en:
         valid_until: Valid until
         cover_image: Image
         usage_coupon_times: Max Usage Times for Coupons
+        coupon_usable_from: Coupon usable from
+        coupon_usable_until: Coupon usable until
+        visible: Visible Online
 
 
       stecms_coupon/coupon:
@@ -122,6 +125,7 @@ en:
         sections:
           various: Various
           general: General
+          validity: Validity
           survey:
             general: General
             questions: Questions (%{size})
@@ -150,7 +154,7 @@ en:
 
       show:
         identifier: Discount Code
-        created_at: Creato il
+        created_at: Created at
         updated_at: Updated at
         generated_at: Generated at
         max_usage_times: Times Usable
@@ -172,6 +176,7 @@ en:
           general: General
           usage: Usage
           device: Device
+
 
 
       table:

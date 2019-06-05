@@ -11,10 +11,11 @@
       .tab-content.mt-4
         .tab-pane.active#promo-general
           .row
-            .col-12.col-sm-5.text-center
+            .col-12.col-sm-5.text-center.flex-fill.d-flex
               .card.mb-4
-                .card-body.svg-responsive<>
-                  =RQRCode::QRCode.new(@promo.identifier).as_svg.html_safe
+                .card-body.svg-responsive.p-2.align-items-center.d-flex.flex-fill.bg-light<>                  
+                  %div
+                    =RQRCode::QRCode.new(@promo.identifier).as_svg.html_safe
 
                 .card-footer.bg-transparent
                   %h5.card-title.text-primary
@@ -37,29 +38,52 @@
                     %dt=t("admin.promo.show.active")
                     %dd=t("#{@promo.active}")
 
+                    %dt=t("admin.promo.show.answer")
+                    %dd=t("#{@promo.answer}")
+
+                    %dt=t("admin.promo.show.visible")
+                    %dd=t("#{@promo.visible}")
+
+                    %dt=t("admin.promo.show.usage_coupon_times")
+                    %dd=@promo.usage_coupon_times
+
                     %dt
                       =t("admin.promo.show.usage_time_per_device")
                       %span.badge.badge-pill.badge-info.align-middle{:"data-toggle" => "tooltip", :"data-html" => "false", :"data-title" => t("admin.promo.show.help.usage_time_per_device")}
                         %i.fa.fa-info
                     %dd=@promo.usage_time_per_device
 
-                    %dt=t("admin.promo.show.usage_coupon_times")
-                    %dd=@promo.usage_coupon_times
-
-                    %dt=t("admin.promo.show.answer")
-                    %dd=t("#{@promo.answer}")
-
-                    %dt=t("admin.promo.show.valid_from")
-                    %dd=l(@promo.valid_from, format: :long)
-
-                    %dt=t("admin.promo.show.valid_until")
-                    %dd=l(@promo.valid_from, format: :long)
-
                     %dt=t("admin.promo.show.created_at")
                     %dd=l(@promo.created_at, format: :long)
 
                     %dt=t("admin.promo.show.updated_at")
                     %dd.mb-0=l(@promo.updated_at, format: :long)
+
+          .row
+            .col-12
+              .card.mb-4
+                .card-body
+                  %h5.card-title.text-primary
+                    =t("admin.promo.show.sections.validity")
+
+                  %dl.mb-0
+                    %dt=t("admin.promo.show.valid_from")
+                    %dd=l(@promo.valid_from, format: :long)
+
+                    %dt=t("admin.promo.show.valid_until")
+                    %dd=l(@promo.valid_until, format: :long)
+
+                    %dt=t("admin.promo.show.coupon_usable_from")
+                    - if @promo.coupon_usable_from.present?
+                      %dd=l(@promo.coupon_usable_from, format: :long)
+                    - else
+                      %dd=" - "
+
+                    %dt=t("admin.promo.show.coupon_usable_until")
+                    - if @promo.coupon_usable_until
+                      %dd=l(@promo.coupon_usable_until, format: :long)
+                    - else
+                      " - "
 
         .tab-pane#promo-survey
           -if ( survey = @promo.survey ).present?
