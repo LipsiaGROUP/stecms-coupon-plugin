@@ -5,6 +5,7 @@
 
 $(document).ready(function(){
   flatpickr('.flatpicker', {
-    enableTime: true,		
-  })
+    enableTime: true,
+    allowInput: true,
+  });
 });

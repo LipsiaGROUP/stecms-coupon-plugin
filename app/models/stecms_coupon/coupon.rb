@@ -38,7 +38,7 @@ class StecmsCoupon::Coupon < ActiveRecord::Base
           return_data[:message] = 'coupon time not started yet!'
           return_data[:status] = false
         end
-      else
+      elsif self.valid_until.present?
         if Time.now.to_i > self.valid_until.to_i
           return_data[:message] = 'coupon has ended!'
           return_data[:status] = false
@@ -68,8 +68,8 @@ class StecmsCoupon::Coupon < ActiveRecord::Base
   def self.generate_coupon(promo, device)
     StecmsCoupon::Coupon.create(stecms_coupon_promo_id: promo.id,
       device: device,
-      valid_from: promo.valid_from,
-      valid_until: promo.valid_until,
+      valid_from: promo.coupon_usable_from,
+      valid_until: promo.coupon_usable_until,
       generated_at: Time.zone.now,
       active: true,
       max_usage_times: promo.usage_coupon_times)

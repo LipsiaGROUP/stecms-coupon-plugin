@@ -13,6 +13,8 @@ StecmsCoupon::Engine.routes.draw do
     post 'survey/submit_answer', to: 'survey#submit_answer'
     get 'promo/detail', to: 'promos#detail'
 
+    resources :promos, only: [ :index ]
+
     resources :coupons, only: [:index, :show] do
       collection do
         post :use
