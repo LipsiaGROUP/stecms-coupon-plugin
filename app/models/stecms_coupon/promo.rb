@@ -56,11 +56,5 @@ class StecmsCoupon::Promo < ActiveRecord::Base
     end
     return_data
   end
-
-  private
-    def set_promo_date_range_to_coupons
-      self.coupon_usable_from  = self.valid_from  if self.coupon_usable_from.blank?
-      self.coupon_usable_until = self.valid_until if self.coupon_usable_until.blank?
-    end
-
+    
 end
