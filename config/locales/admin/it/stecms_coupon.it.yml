@@ -58,6 +58,13 @@ it:
   # Views Translations
   admin:
     promo:
+      status:
+        coupon_added: "Coupon Generato con Successo!"
+        coupon_already_generated: Hai già ottenuto tutti i Coupon per questa Promozione.
+        not_valid_coverage: "La Promozione è disponibile dal %{start_at} fino al %{ends_at}."
+        expired: "Promozione Scaduta il %{expired_at}."
+        not_valid_yet: "Questa Promozione sarà disponibile dal %{start_at}."
+        not_found: "Promozione %{identifier} non trovata."
       # General aside menu for stecms coupons section
       side_menu:
         promos: "Promozioni"
@@ -148,6 +155,13 @@ it:
 
     # Coupons section
     coupon:
+      status:
+        already_used: Già utilizzato.
+        successfully_used: Coupon utilizzato con successo. Grazie!
+        not_valid_coverage: "Disponibile dal %{start_at} fino al %{ends_at}"
+        not_valid_yet: "Disponibile dal %{start_at}"
+        expired: "Scaduto il %{expired_at}."
+
       index:
         title: "Elenco Codici Sconto"
         new: Crea un Buono Sconto

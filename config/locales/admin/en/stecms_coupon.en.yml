@@ -63,6 +63,13 @@ en:
         promos: "Promos"
         coupons: "Discount Codes"
 
+      status:
+        coupon_already_generated: Hai già ottenuto tutti i Coupon per questa Promozione.
+        not_valid_coverage: "This Promotion will be available from %{start_at} until %{ends_at}."
+        expired: "This Promo has expired at %{expired_at}."
+        not_valid_yet: "This Promotion will be available from %{start_at}."
+        not_found: Promotion not found.
+
       index:
         title: "Promos List"
         new: "Create a Promo"
@@ -158,6 +165,13 @@ en:
       edit:
         title: "Edit Coupon \"%{identifier}\""
 
+      status:
+        already_used: Already used.
+        successfully_used: Coupon successfully used. Thank You!
+        not_valid_coverage: "Available from %{start_at} until %{ends_at}"
+        not_valid_yet: "Available from %{start_at}"
+        expired: "Expired at %{expired_at}."
+
       show:
         identifier: Discount Code
         created_at: Created at
@@ -168,6 +182,7 @@ en:
         active: Active
         device: Device ID
         promo: Promo
+
 
         tabs:
           general: General

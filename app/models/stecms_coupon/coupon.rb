@@ -22,29 +22,32 @@ class StecmsCoupon::Coupon < ActiveRecord::Base
   end
 
   def check_coupon_status
-    return_data = {status: true, message: '', obj: nil}
+    return_data = { status: true, message: '', used: false, obj: nil }
+
     usage_after_count = self.usage_times + 1
     if self.max_usage_times < usage_after_count
-      return_data[:message] = 'coupon already reach the limit!'
-      return_data[:status] = false
+      return_data[:message] = I18n.t("admin.coupon.status.successfully_used")
+      return_data[:status]  = false
+      return_data[:used]    = true
     else
       if self.valid_from.present? and self.valid_until.present?
         unless (self.valid_from.to_i .. self.valid_until.to_i).cover?(Time.now.to_i)
-          return_data[:message] = 'Coupon not valid time'
-          return_data[:status] = false
+          return_data[:message] = I18n.t("admin.coupon.status.not_valid_coverage", start_at: I18n.l(self.valid_from, format: :long), ends_at: I18n.l(self.valid_until, format: :long))
+          return_data[:status]  = false
         end
       elsif self.valid_from.present?
         if Time.now.to_i < self.valid_from.to_i
-          return_data[:message] = 'coupon time not started yet!'
-          return_data[:status] = false
+          return_data[:message] = I18n.t("admin.coupon.status.not_valid_yet", start_at: I18n.l(self.valid_from, format: :long) )
+          return_data[:status]  = false
         end
       elsif self.valid_until.present?
         if Time.now.to_i > self.valid_until.to_i
-          return_data[:message] = 'coupon has ended!'
-          return_data[:status] = false
+          return_data[:message] = I18n.t("admin.coupon.status.expired", expired_at: I18n.l(self.valid_until, format: :long))
+          return_data[:status]  = false
         end
       end
     end
+
     return_data
   end
 
@@ -56,11 +59,12 @@ class StecmsCoupon::Coupon < ActiveRecord::Base
       return_data[:obj] = coupon
 
       data = coupon.check_coupon_status
-      return_data[:status] = data[:status]
+      return_data[:status]  = data[:status]
       return_data[:message] = data[:message]
+      return_data[:used]    = data[:used]
     else
-      return_data[:message] = 'coupon not found'
-      return_data[:status] = false
+      return_data[:message] = I18n.t("admin.coupon.status.not_found", identifier: identifier)
+      return_data[:status]  = false
     end
     return_data
   end
@@ -74,5 +78,4 @@ class StecmsCoupon::Coupon < ActiveRecord::Base
       active: true,
       max_usage_times: promo.usage_coupon_times)
   end
-
 end

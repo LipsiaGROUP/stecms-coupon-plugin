@@ -1,14 +1,14 @@
 module StecmsCoupon
   module Api
     class CouponsController < ApiController
-      include Rosebud      
+      include Rosebud
 
       params :index do
         requires :device
       end
 
       def index
-        @coupons = ::StecmsCoupon::Coupon.includes(:promo).where(device: params[:device])
+        @coupons = ::StecmsCoupon::Coupon.includes(:promo).where(device: params[:device]).order(generated_at: :desc)
       end
 
       params :use do

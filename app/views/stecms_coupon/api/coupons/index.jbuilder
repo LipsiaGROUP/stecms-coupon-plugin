@@ -6,5 +6,5 @@ json.coupons @coupons do |coupon|
   json.valid_from coupon.valid_from
   json.valid_until coupon.valid_until
   json.promo coupon.promo.try(:name)
-  json.status StecmsCoupon::Coupon.check_valid_and_active(coupon.identifier, params[:device])
+  json.status StecmsCoupon::Coupon.check_valid_and_active(coupon.identifier, params[:device])  
 end

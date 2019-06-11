@@ -36,25 +36,25 @@ class StecmsCoupon::Promo < ActiveRecord::Base
       return_data[:obj] = promo
       if promo.valid_from.present? and promo.valid_until.present?
         unless (promo.valid_from.to_i .. promo.valid_until.to_i).cover?(Time.now.to_i)
-          return_data[:message] = 'QR not valid time'
-          return_data[:status] = false
+          return_data[:message] = I18n.t("admin.promo.status.not_valid_coverage", start_at: I18n.l(self.valid_from, format: :long), ends_at: I18n.l(self.valid_until, format: :long)) #'QR not valid time'
+          return_data[:status]  = false
         end
       elsif promo.valid_from.present?
         if Time.now.to_i < promo.valid_from.to_i
-          return_data[:message] = 'Promo not started yet!'
+          return_data[:message] = I18n.t("admin.promo.status.not_valid_yet", start_at: I18n.l(self.valid_from, format: :long)) #'Promo not started yet!'
           return_data[:status] = false
         end
       elsif promo.valid_until.present?
         if Time.now.to_i > promo.valid_until.to_i
-          return_data[:message] = 'Promo has ended!'
+          return_data[:message] = I18n.t("admin.promo.status.expired", expired_at: I18n.l(self.valid_until, format: :long))
           return_data[:status] = false
         end
       end
     else
-      return_data[:message] = 'Promo not found'
-      return_data[:status] = false
+      return_data[:message] = I18n.t("admin.promo.status.not_found", identifier: identifier)
+      return_data[:status]  = false
     end
     return_data
   end
-    
+
 end
