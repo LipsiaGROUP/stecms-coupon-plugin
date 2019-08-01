@@ -20,6 +20,12 @@ Add this line to app/assets/javascripts/backend/backend.js
 //= require stecms_coupon
 ```
 
+Add this line to app/assets/stylesheets/backend/backend.scss
+
+```stylesheet
+@import "stecms_coupon";
+```
+
 Add this line to config/routes/backend_routes.rb (inside namespace :backend block)
 
 ```ruby
